@@ -33,3 +33,6 @@ $ python main.py
 
 ## License
 MIT
+
+pip uninstall torchtext
+pip install torchtext==0.2.3
