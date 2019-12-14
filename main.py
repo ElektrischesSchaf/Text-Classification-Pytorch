@@ -105,7 +105,7 @@ test_sen2 = [[TEXT.vocab.stoi[x] for x in test_sen2]]
 
 test_sen = np.asarray(test_sen1)
 test_sen = torch.LongTensor(test_sen)
-test_tensor = Variable(test_sen, volatile=True)
+test_tensor = Variable(test_sen, torch.no_grad()=True)
 test_tensor = test_tensor.cuda()
 model.eval()
 output = model(test_tensor, 1)
