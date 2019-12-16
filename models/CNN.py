@@ -70,8 +70,9 @@ class CNN(nn.Module):
 		
 		"""
 		
+
 		input = self.word_embeddings(input_sentences)
-		print(' input.size() 1: ', input.size(), end='')
+		print('\n input.size() 1: ', input.size(), end='')
 		# input.size() = (batch_size, num_seq, embedding_length)
 		input = input.unsqueeze(1)
 		print(' input.size() 2: ', input.size(), end='')
@@ -90,6 +91,6 @@ class CNN(nn.Module):
 		print(' fc_in.size(): ', all_out.size(), end='')
 		# fc_in.size()) = (batch_size, num_kernels*out_channels)
 		logits = self.label(fc_in)
-		print(' logits.size(): ', all_out.size(), end='')
-				
+		print(' logits.size(): ', all_out.size(), '\n')
+
 		return logits
