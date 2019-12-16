@@ -69,28 +69,41 @@ class CNN(nn.Module):
 		logits.size() = (batch_size, output_size)
 		
 		"""
-		
 
 		input = self.word_embeddings(input_sentences)
+
 		print('\n input.size() 1: ', input.size(), end='')
 		# input.size() = (batch_size, num_seq, embedding_length)
+
 		input = input.unsqueeze(1)
+
 		print(' input.size() 2: ', input.size(), end='')
 		# input.size() = (batch_size, 1, num_seq, embedding_length)
+
 		max_out1 = self.conv_block(input, self.conv1)
+
 		print(' max_out1.size(): ', max_out1.size(), end='')
+
 		max_out2 = self.conv_block(input, self.conv2)
+
 		print(' max_out2.size(): ', max_out2.size(), end='')
+
 		max_out3 = self.conv_block(input, self.conv3)
+
 		print(' max_out3.size(): ', max_out3.size(), end='')
 		
 		all_out = torch.cat((max_out1, max_out2, max_out3), 1)
+
 		print(' all_out.size(): ', all_out.size(), end='')
 		# all_out.size() = (batch_size, num_kernels*out_channels)
+
 		fc_in = self.dropout(all_out)
+
 		print(' fc_in.size(): ', all_out.size(), end='')
 		# fc_in.size()) = (batch_size, num_kernels*out_channels)
+
 		logits = self.label(fc_in)
+		
 		print(' logits.size(): ', all_out.size(), '\n')
 
 		return logits
