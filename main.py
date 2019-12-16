@@ -17,6 +17,7 @@ def clip_gradient(model, clip_value):
         p.grad.data.clamp_(-clip_value, clip_value)
     
 def train_model(model, train_iter, epoch):
+    print('type of train_iter', type(train_iter), '\n')
     total_epoch_loss = 0
     total_epoch_acc = 0
     model.cuda()
