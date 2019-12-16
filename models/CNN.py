@@ -44,6 +44,7 @@ class CNN(nn.Module):
 	
 	def conv_block(self, input, conv_layer):
 		conv_out = conv_layer(input)# conv_out.size() = (batch_size, out_channels, dim, 1)
+		print('\nconv_out.size() = ', conv_out.size(), '\n')
 		activation = F.relu(conv_out.squeeze(3))# activation.size() = (batch_size, out_channels, dim1)
 		max_out = F.max_pool1d(activation, activation.size()[2]).squeeze(2)# maxpool_out.size() = (batch_size, out_channels)
 		
