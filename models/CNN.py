@@ -105,9 +105,9 @@ class CNN(nn.Module):
 		print(' fc_in.size(): ', all_out.size(), end='')
 		# fc_in.size()) = (batch_size, num_kernels*out_channels) =  torch.Size([32, 3]) 
 
-		logits = self.label(fc_in)
+		logits = self.label(fc_in)  # self.label = nn.Linear(len(kernel_heights)*out_channels, output_size)
 
 		print(' logits.size(): ', logits.size(), '\n')
-		# logits.size():  torch.Size([32, 3])
+		# logits.size() = ( batch_size, output_size)  = torch.Size([32, 2])
 
 		return logits
