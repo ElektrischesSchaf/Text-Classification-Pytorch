@@ -81,8 +81,8 @@ output_size = 2
 hidden_size = 256
 embedding_length = 300
 
-#model = LSTMClassifier(batch_size, output_size, hidden_size, vocab_size, embedding_length, word_embeddings)
-model = CNN (batch_size, output_size, 1, 1, [9,7,5], 1, 0, 0.6, vocab_size, embedding_length, word_embeddings)
+model = LSTMClassifier(batch_size, output_size, hidden_size, vocab_size, embedding_length, word_embeddings)
+#model = CNN (batch_size, output_size, 1, 1, [9,7,5], 1, 0, 0.6, vocab_size, embedding_length, word_embeddings)
 loss_fn = F.cross_entropy
 
 for epoch in range(10):

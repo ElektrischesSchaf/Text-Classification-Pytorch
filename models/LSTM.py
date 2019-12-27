@@ -53,6 +53,7 @@ class LSTMClassifier(nn.Module):
 		if batch_size is None:
 			h_0 = Variable(torch.zeros(1, self.batch_size, self.hidden_size).cuda()) # Initial hidden state of the LSTM
 			c_0 = Variable(torch.zeros(1, self.batch_size, self.hidden_size).cuda()) # Initial cell state of the LSTM
+			print('size of h_0: ', h_0.size(), ', size of c_0: ', c_0.size(), '\n')
 		else:
 			h_0 = Variable(torch.zeros(1, batch_size, self.hidden_size).cuda())
 			c_0 = Variable(torch.zeros(1, batch_size, self.hidden_size).cuda())
