@@ -11,6 +11,12 @@ from models.CNN import CNN
 
 TEXT, vocab_size, word_embeddings, train_iter, valid_iter, test_iter = load_data.load_dataset()
 
+learning_rate = 2e-5
+batch_size = 32
+output_size = 2
+hidden_size = 256
+embedding_length = 300
+
 def clip_gradient(model, clip_value):
     params = list(filter(lambda p: p.grad is not None, model.parameters()))
     for p in params:
@@ -31,7 +37,7 @@ def train_model(model, train_iter, epoch):
         if torch.cuda.is_available():
             text = text.cuda()
             target = target.cuda()
-        if (text.size()[0] is not 32):# One of the batch returned by BucketIterator has length different than 32.
+        if (text.size()[0] is not batch_size):# One of the batch returned by BucketIterator has length different than 32.
             continue
         optim.zero_grad()
         prediction = model(text)
@@ -75,11 +81,7 @@ def eval_model(model, val_iter):
     return total_epoch_loss/len(val_iter), total_epoch_acc/len(val_iter)
 	
 
-learning_rate = 2e-5
-batch_size = 32
-output_size = 2
-hidden_size = 256
-embedding_length = 300
+
 
 model = LSTMClassifier(batch_size, output_size, hidden_size, vocab_size, embedding_length, word_embeddings)
 #model = CNN (batch_size, output_size, 1, 1, [9,7,5], 1, 0, 0.6, vocab_size, embedding_length, word_embeddings)
